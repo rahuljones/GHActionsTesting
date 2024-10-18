@@ -1,0 +1,30 @@
+name: C/C++ CI
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: configure
+      run: ./configure
+    - name: 'Install Dependencies for Serial Version'
+      run: sudo apt-get update
+    - name: "Make Build Directory and build"
+      run: |
+          mkdir out
+          cd out
+          mkdir build
+          cd build
+          cmake -S ../../ -B .
+          make
+          ./hellowrld
