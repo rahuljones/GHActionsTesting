@@ -15,8 +15,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
     - name: 'Install Dependencies for Serial Version'
       run: sudo apt-get update
     - name: "Make Build Directory and build"
